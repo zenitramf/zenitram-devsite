@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zenitram-devsite",
+  "account_id": "1466bea799ef2ab86d6dd673941cc668",
+  "compatibility_date": "2026-08-22",
+  "assets": {
+    "directory": "./dist"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

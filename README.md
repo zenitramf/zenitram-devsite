@@ -24,3 +24,15 @@ pnpm preview
 ```
 
 Requires Node.js `>=22.12.0`.
+
+## Deploy
+
+Cloudflare Workers (static assets) on account **ZenAgent**:
+
+```bash
+pnpm deploy
+```
+
+Requires `CLOUDFLARE_API_TOKEN` (or `CLOUDFLARE_MGMT_TOKEN`) and account id `1466bea799ef2ab86d6dd673941cc668`.
+
+Pushes to `main` also deploy via `.github/workflows/deploy-cloudflare.yml` once repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set.
