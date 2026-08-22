@@ -27,12 +27,15 @@ Requires Node.js `>=22.12.0`.
 
 ## Deploy
 
-Cloudflare Workers (static assets) on account **ZenAgent**:
+Cloudflare Workers (static assets) on account **Zenitram**, custom domains `zenitram.dev` / `www.zenitram.dev`:
 
 ```bash
 pnpm deploy
 ```
 
-Requires `CLOUDFLARE_API_TOKEN` (or `CLOUDFLARE_MGMT_TOKEN`) and account id `1466bea799ef2ab86d6dd673941cc668`.
+Requires `CLOUDFLARE_API_TOKEN` (e.g. `CLOUDFLARE_MGMT_API`) and account id `23f99d3ef188b488e18827b853b73295`.
 
-Pushes to `main` also deploy via `.github/workflows/deploy-cloudflare.yml` once repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set.
+Git-linked deploys:
+
+- **Cloudflare Workers Builds** trigger `Production Deploy` on `main` (build: `pnpm install --frozen-lockfile && pnpm build`, deploy: `npx wrangler deploy`)
+- **GitHub Actions** `.github/workflows/deploy-cloudflare.yml` using repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`

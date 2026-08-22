@@ -1,12 +1,22 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "zenitram-devsite",
-  "account_id": "1466bea799ef2ab86d6dd673941cc668",
+  "account_id": "23f99d3ef188b488e18827b853b73295",
   "compatibility_date": "2026-08-22",
   "assets": {
     "directory": "./dist"
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "zenitram.dev",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.zenitram.dev",
+      "custom_domain": true
+    }
+  ]
 }
