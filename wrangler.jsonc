@@ -3,6 +3,8 @@
   "name": "zenitram-devsite",
   "account_id": "23f99d3ef188b488e18827b853b73295",
   "compatibility_date": "2026-08-22",
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "./dist"
   },
