@@ -1,0 +1,19 @@
+---
+import SiteContainer from "@/components/layout/site-container.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-gutter border-t border-border py-10">
+  <SiteContainer class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+    <p class="text-sm text-muted-foreground">
+      © {year} Zenitram Solutions
+    </p>
+    <a
+      class="text-sm text-muted-foreground transition-colors hover:text-foreground"
+      href="mailto:francisco@zenitram.dev"
+    >
+      francisco@zenitram.dev
+    </a>
+  </SiteContainer>
+</footer>

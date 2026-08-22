@@ -1,0 +1,190 @@
+---
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+import { Button } from "@/components/starwind/button";
+import SiteContainer from "@/components/layout/site-container.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+
+const services = [
+  {
+    title: "Network infrastructure",
+    description:
+      "Reliable connectivity, switching, and wireless designed for the spaces you serve.",
+    image: "/images/network.png",
+    imageAlt: "Network hierarchy diagram icon",
+  },
+  {
+    title: "Systems for houses of worship",
+    description:
+      "Practical systems support so your campus stays connected through every gathering.",
+    image: "/images/worship.png",
+    imageAlt: "Church with secure network icon",
+  },
+  {
+    title: "Technology for nonprofits",
+    description:
+      "Straightforward technology guidance that keeps teams focused on people, not tooling.",
+    image: "/images/nonprofit.png",
+    imageAlt: "Community network held in hands icon",
+  },
+] as const;
+---
+
+<BaseLayout
+  description="Practical network and systems support for houses of worship and nonprofits."
+  title="Zenitram Solutions — Network & systems for mission-driven organizations"
+>
+  <!-- Hero -->
+  <section
+    aria-labelledby="hero-heading"
+    class="relative isolate min-h-[min(92svh,52rem)] overflow-hidden border-b border-border"
+  >
+    <img
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 size-full object-cover object-right animate-fade-in"
+      decoding="async"
+      fetchpriority="high"
+      height="1024"
+      src="/images/hero.png"
+      width="1536"
+    >
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/25"
+    >
+    </div>
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"
+    >
+    </div>
+
+    <SiteContainer
+      class="site-gutter relative flex min-h-[min(92svh,52rem)] flex-col justify-center py-24 md:py-32"
+    >
+      <div class="max-w-xl animate-fade-up">
+        <p
+          class="mb-5 font-heading text-sm font-semibold tracking-[0.14em] text-white uppercase sm:text-base"
+        >
+          Zenitram Solutions
+        </p>
+        <h1
+          class="font-heading text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl md:text-[3.25rem] md:leading-[1.1]"
+          id="hero-heading"
+        >
+          Network and systems for mission-driven organizations.
+        </h1>
+        <p class="mt-5 max-w-md text-base text-white/75 sm:text-lg">
+          Practical infrastructure for houses of worship and nonprofits.
+        </p>
+        <div class="mt-8">
+          <Button href="#contact" size="lg" variant="default">
+            Contact
+          </Button>
+        </div>
+      </div>
+    </SiteContainer>
+  </section>
+
+  <!-- Services -->
+  <section
+    aria-labelledby="services-heading"
+    class="site-gutter border-b border-border py-24 md:py-32"
+    id="services"
+  >
+    <SiteContainer>
+      <div class="mb-14 max-w-xl">
+        <h2
+          class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+          id="services-heading"
+        >
+          Services
+        </h2>
+        <p class="mt-4 text-muted-foreground text-base sm:text-lg">
+          Focused support where reliability matters most.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          services.map((service, index) => (
+            <Card
+              class="overflow-hidden bg-card/80 transition-colors duration-300 hover:bg-card"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <img
+                alt={service.imageAlt}
+                class="aspect-square w-full object-cover"
+                decoding="async"
+                height="1024"
+                loading="lazy"
+                src={service.image}
+                width="1024"
+              >
+              <CardHeader>
+                <CardTitle>{service.title}</CardTitle>
+                <CardDescription>{service.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))
+        }
+      </div>
+    </SiteContainer>
+  </section>
+
+  <!-- About -->
+  <section
+    aria-labelledby="about-heading"
+    class="site-gutter border-b border-border py-24 md:py-32"
+    id="about"
+  >
+    <SiteContainer class="max-w-2xl">
+      <h2
+        class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+        id="about-heading"
+      >
+        About
+      </h2>
+      <p class="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
+        Zenitram Solutions provides practical network and systems support so
+        worship communities and nonprofits can focus on mission, not
+        infrastructure.
+      </p>
+    </SiteContainer>
+  </section>
+
+  <!-- Contact -->
+  <section
+    aria-labelledby="contact-heading"
+    class="site-gutter py-24 md:py-32"
+    id="contact"
+  >
+    <SiteContainer class="max-w-2xl">
+      <h2
+        class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+        id="contact-heading"
+      >
+        Contact
+      </h2>
+      <p class="mt-6 text-base text-muted-foreground sm:text-lg">
+        Tell us briefly what you need. We will follow up by email.
+      </p>
+      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <Button href="mailto:francisco@zenitram.dev" size="lg" variant="default">
+          Email francisco@zenitram.dev
+        </Button>
+        <a
+          class="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+          href="mailto:francisco@zenitram.dev"
+        >
+          francisco@zenitram.dev
+        </a>
+      </div>
+    </SiteContainer>
+  </section>
+</BaseLayout>

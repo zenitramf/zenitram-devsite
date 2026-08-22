@@ -1,0 +1,15 @@
+---
+/**
+ * Standard site content shell (max-width + center).
+ * Pair with `site-gutter` on the parent section/footer.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["site-container", className]}>
+  <slot />
+</div>
