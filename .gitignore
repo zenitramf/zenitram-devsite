@@ -70,6 +70,9 @@ out
 # pnpm
 .pnpm-store
 
+# local scratch
+.scratch/
+
 # yarn v3
 .pnp.*
 .yarn/*

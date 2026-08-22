@@ -3,8 +3,9 @@ import { Button } from "@/components/starwind/button";
 
 const navLinks = [
   { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#work", label: "Work" },
+  { href: "#portal", label: "Portal" },
+  { href: "#zenith-cast", label: "Zenith Cast" },
 ] as const;
 ---
 
@@ -17,23 +18,21 @@ const navLinks = [
     class="site-gutter site-container flex h-16 items-center justify-between"
   >
     <a
-      class="font-heading text-sm font-semibold tracking-[0.08em] text-foreground uppercase transition-opacity hover:opacity-80 sm:text-base"
+      class="font-heading font-semibold text-foreground text-sm uppercase tracking-[0.08em] transition-opacity hover:opacity-80 sm:text-base"
       href="/"
     >
       Zenitram Solutions
     </a>
 
     <div class="hidden items-center gap-1 md:flex">
-      {
-        navLinks.map((link) => (
+      {navLinks.map((link) => (
           <a
-            class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            class="rounded-md px-3 py-2 text-muted-foreground text-sm transition-colors hover:text-foreground"
             href={link.href}
           >
             {link.label}
           </a>
-        ))
-      }
+        ))}
       <Button class="ml-2" href="#contact" size="sm" variant="default">
         Contact
       </Button>
@@ -69,8 +68,7 @@ const navLinks = [
     id="mobile-nav"
   >
     <div class="site-container flex flex-col gap-1 py-4">
-      {
-        navLinks.map((link) => (
+      {navLinks.map((link) => (
           <a
             class="rounded-md px-3 py-3 text-base text-muted-foreground transition-colors hover:text-foreground"
             data-nav-link
@@ -78,8 +76,7 @@ const navLinks = [
           >
             {link.label}
           </a>
-        ))
-      }
+        ))}
       <Button class="mt-2 w-full" href="#contact" size="md" variant="default">
         Contact
       </Button>
@@ -90,9 +87,11 @@ const navLinks = [
 <script>
   function initHeader() {
     const header = document.querySelector<HTMLElement>("[data-site-header]");
-    const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+    const toggle =
+      document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
     const mobileNav = document.querySelector<HTMLElement>("[data-mobile-nav]");
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
 
     if (!(header && toggle && mobileNav)) {
       return;
