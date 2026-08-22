@@ -1,0 +1,133 @@
+---
+import { Button } from "@/components/starwind/button";
+
+const navLinks = [
+  { href: "#services", label: "Services" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+] as const;
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-transparent bg-background/80 backdrop-blur-md transition-[border-color] duration-300 data-[scrolled]:border-border"
+  data-site-header
+>
+  <nav
+    aria-label="Primary"
+    class="site-gutter site-container flex h-16 items-center justify-between"
+  >
+    <a
+      class="font-heading text-sm font-semibold tracking-[0.08em] text-foreground uppercase transition-opacity hover:opacity-80 sm:text-base"
+      href="/"
+    >
+      Zenitram Solutions
+    </a>
+
+    <div class="hidden items-center gap-1 md:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            href={link.href}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <Button class="ml-2" href="#contact" size="sm" variant="default">
+        Contact
+      </Button>
+    </div>
+
+    <button
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      aria-label="Open menu"
+      class="group relative flex size-10 items-center justify-center md:hidden"
+      data-nav-toggle
+      type="button"
+    >
+      <span class="sr-only">Menu</span>
+      <div aria-hidden="true" class="relative size-5">
+        <span
+          class="absolute top-1 left-0 h-px w-full origin-center bg-foreground transition-all duration-300 group-aria-expanded:top-1/2 group-aria-expanded:-translate-y-1/2 group-aria-expanded:rotate-45"
+        ></span>
+        <span
+          class="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-foreground transition-all duration-300 group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0"
+        ></span>
+        <span
+          class="absolute bottom-1 left-0 h-px w-full origin-center bg-foreground transition-all duration-300 group-aria-expanded:bottom-1/2 group-aria-expanded:translate-y-1/2 group-aria-expanded:-rotate-45"
+        ></span>
+      </div>
+    </button>
+  </nav>
+
+  <div
+    class="site-gutter border-t border-border bg-background md:hidden"
+    data-mobile-nav
+    hidden
+    id="mobile-nav"
+  >
+    <div class="site-container flex flex-col gap-1 py-4">
+      {
+        navLinks.map((link) => (
+          <a
+            class="rounded-md px-3 py-3 text-base text-muted-foreground transition-colors hover:text-foreground"
+            data-nav-link
+            href={link.href}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <Button class="mt-2 w-full" href="#contact" size="md" variant="default">
+        Contact
+      </Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+    const mobileNav = document.querySelector<HTMLElement>("[data-mobile-nav]");
+    const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+
+    if (!(header && toggle && mobileNav)) {
+      return;
+    }
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      if (open) {
+        mobileNav.removeAttribute("hidden");
+      } else {
+        mobileNav.setAttribute("hidden", "");
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      setOpen(!open);
+    });
+
+    for (const link of links) {
+      link.addEventListener("click", () => setOpen(false));
+    }
+
+    const onScroll = () => {
+      if (window.scrollY > 8) {
+        header.setAttribute("data-scrolled", "");
+      } else {
+        header.removeAttribute("data-scrolled");
+      }
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  initHeader();
+</script>
