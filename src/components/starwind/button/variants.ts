@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants";
 
 export const button = tv({
   base: [
-    "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md font-medium",
+    "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full font-medium",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
     "outline-none transition-all focus-visible:ring-3",
     "disabled:pointer-events-none disabled:opacity-50",

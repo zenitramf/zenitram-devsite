@@ -1,189 +1,502 @@
 ---
+import BrowserFrame from "@/components/home/browser-frame.astro";
+import SectionHeading from "@/components/home/section-heading.astro";
+import SiteContainer from "@/components/layout/site-container.astro";
+import { Button } from "@/components/starwind/button";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/starwind/card";
-import { Button } from "@/components/starwind/button";
-import SiteContainer from "@/components/layout/site-container.astro";
 import BaseLayout from "@/layouts/base-layout.astro";
 
 const services = [
   {
-    title: "Network infrastructure",
     description:
-      "Reliable connectivity, switching, and wireless designed for the spaces you serve.",
-    image: "/images/network.png",
-    imageAlt: "Network hierarchy diagram icon",
+      "Worship slides, bilingual welcome graphics, bulletins, and brand systems that look like the church — not a template.",
+    href: "#work",
+    id: "graphic-design",
+    title: "Graphic design",
   },
   {
-    title: "Systems for houses of worship",
     description:
-      "Practical systems support so your campus stays connected through every gathering.",
-    image: "/images/worship.png",
-    imageAlt: "Church with secure network icon",
+      "Church websites with visit flows, service times, and gospel pages. English and Spanish when the congregation needs both.",
+    href: "#work",
+    id: "websites",
+    title: "Website services",
   },
   {
-    title: "Technology for nonprofits",
     description:
-      "Straightforward technology guidance that keeps teams focused on people, not tooling.",
-    image: "/images/nonprofit.png",
-    imageAlt: "Community network held in hands icon",
+      "Order of service planning, teams, announcements, and reminders in one staff portal — so Sunday is coordinated before it starts.",
+    href: "#portal",
+    id: "staff-management",
+    title: "Staff & church service management",
+  },
+] as const;
+
+const clients = [
+  {
+    alt: "Iglesia Bautista Victory homepage with Spanish headline and Fresno skyline",
+    href: "https://iglesiafresno.com",
+    id: "iglesia",
+    image: "/images/client-iglesiafresno.webp",
+    name: "Iglesia Bautista Victory",
+    note: "Spanish-language church site — visit flows, gospel, and team pages.",
+    url: "iglesiafresno.com",
+  },
+  {
+    alt: "Victory Baptist Church homepage with Grow in faith headline",
+    href: "https://fresnovictory.com",
+    id: "vbc",
+    image: "/images/client-fresnovictory.webp",
+    name: "Victory Baptist Church",
+    note: "English church site — sermons, ministries, events, and visit planning.",
+    url: "fresnovictory.com",
+  },
+] as const;
+
+const graphics = [
+  {
+    alt: "Sample Sunday morning worship lyric slide for Amazing Grace",
+    caption: "Worship lyric slide",
+    id: "lyric",
+    src: "/images/graphic-slide.webp",
+  },
+  {
+    alt: "Sample bilingual welcome graphic with Sunday and Thursday service times",
+    caption: "Bilingual welcome graphic",
+    id: "welcome",
+    src: "/images/graphic-welcome.webp",
+  },
+] as const;
+
+const portalShots = [
+  {
+    alt: "Sanitized church portal dashboard with sample order counts and teams",
+    caption: "Dashboard — upcoming Sunday, planning counts, serving teams",
+    id: "dashboard",
+    src: "/images/portal-dashboard.webp",
+  },
+  {
+    alt: "Sanitized order of service editor with public-domain hymn titles",
+    caption: "Order of service — activities, hymns, assigned teams",
+    id: "order",
+    src: "/images/portal-order.webp",
+  },
+  {
+    alt: "Sanitized team reminder screen with role-based contacts and no personal names",
+    caption: "Teams & reminders — roles, call times, agent-queued notices",
+    id: "reminders",
+    src: "/images/portal-reminders.webp",
+  },
+] as const;
+
+const mediaTools = [
+  {
+    description:
+      "HDMI, SDI, and network runs dressed for the booth, platform, and screens — built to last a church week, not a one-off event.",
+    id: "cabling",
+    title: "Video & cabling",
+  },
+  {
+    description:
+      "Worship lyrics, scripture, and announcement look — configured and trained for the volunteers who actually run Sunday.",
+    id: "propresenter",
+    title: "ProPresenter",
+  },
+  {
+    description:
+      "Presentation for congregations already on Proclaim — we set up the workflow so media is not a second job.",
+    id: "proclaim",
+    title: "Proclaim",
+  },
+] as const;
+
+const applets = [
+  {
+    description:
+      "Remind Media at 7:00 AM and Worship at 8:30 AM with the published order of service.",
+    id: "sunday",
+    swatch: "bg-sky-500",
+    title: "If Sunday is tomorrow",
+  },
+  {
+    description:
+      "Send that team’s contact group the plan, hymns, and call time — no extra text thread.",
+    id: "assigned",
+    swatch: "bg-amber-400",
+    title: "If a role is assigned",
+  },
+  {
+    description:
+      "Queue a next-day reminder for pastoral staff. Follow-up does not depend on someone remembering.",
+    id: "guest",
+    swatch: "bg-emerald-500",
+    title: "If a guest card is complete",
+  },
+] as const;
+
+const cyberItems = [
+  {
+    description:
+      "Endpoint protection sized for church offices and volunteer laptops.",
+    id: "antivirus",
+    title: "Antivirus",
+  },
+  {
+    description:
+      "Network edge that belongs to the church, with rules you can explain to a trustee board.",
+    id: "firewall",
+    title: "Firewalls",
+  },
+  {
+    description:
+      "Keep campus Wi-Fi and staff browsing in a lane that fits a house of worship.",
+    id: "filtering",
+    title: "Web-content filtering",
   },
 ] as const;
 ---
 
 <BaseLayout
-  description="Practical network and systems support for houses of worship and nonprofits."
-  title="Zenitram Solutions — Network & systems for mission-driven organizations"
+  description="Church websites, graphic design, media, staff portals, and Zenith Cast — technology for houses of worship from Zenitram Solutions."
+  title="Zenitram Solutions — Technology for the local church"
 >
-  <!-- Hero -->
   <section
     aria-labelledby="hero-heading"
-    class="relative isolate min-h-[min(92svh,52rem)] overflow-hidden border-b border-border"
+    class="relative isolate min-h-[min(92svh,52rem)] overflow-hidden"
   >
-    <img
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-0 size-full object-cover object-right animate-fade-in"
-      decoding="async"
-      fetchpriority="high"
-      height="1024"
-      src="/images/hero.png"
-      width="1536"
-    >
-    <div
-      aria-hidden="true"
-      class="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/25"
-    >
-    </div>
-    <div
-      aria-hidden="true"
-      class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"
-    >
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div
+        class="absolute top-[48%] left-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8 sm:size-[54rem] md:size-[68rem]"
+      ></div>
+      <div
+        class="absolute top-[48%] left-1/2 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8 sm:size-[38rem] md:size-[48rem]"
+      ></div>
+      <div
+        class="absolute top-[48%] left-1/2 size-[16rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 sm:size-[22rem] md:size-[28rem]"
+      ></div>
     </div>
 
     <SiteContainer
-      class="site-gutter relative flex min-h-[min(92svh,52rem)] flex-col justify-center py-24 md:py-32"
+      class="site-gutter relative flex min-h-[min(92svh,52rem)] flex-col items-center justify-center py-24 text-center md:py-32"
     >
-      <div class="max-w-xl animate-fade-up">
+      <div class="max-w-3xl animate-fade-up">
         <p
-          class="mb-5 font-heading text-sm font-semibold tracking-[0.14em] text-white uppercase sm:text-base"
+          class="mb-5 font-heading font-semibold text-sm text-white/70 uppercase tracking-[0.16em] sm:text-base"
         >
           Zenitram Solutions
         </p>
         <h1
-          class="font-heading text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl md:text-[3.25rem] md:leading-[1.1]"
+          class="font-extrabold font-heading text-4xl text-balance text-white tracking-tight sm:text-6xl md:text-7xl md:leading-[1.05]"
           id="hero-heading"
         >
-          Network and systems for mission-driven organizations.
+          Technology for the local church.
         </h1>
-        <p class="mt-5 max-w-md text-base text-white/75 sm:text-lg">
-          Practical infrastructure for houses of worship and nonprofits.
+        <p class="mx-auto mt-6 max-w-xl text-base text-white/70 sm:text-lg">
+          Websites, design, media, and staff tools for congregations — without
+          the subscription maze.
         </p>
-        <div class="mt-8">
+        <div
+          class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
           <Button href="#contact" size="lg" variant="default">
-            Contact
+            Talk with us
+          </Button>
+          <Button href="#work" size="lg" variant="outline">
+            See the work
           </Button>
         </div>
       </div>
     </SiteContainer>
   </section>
 
-  <!-- Services -->
   <section
     aria-labelledby="services-heading"
-    class="site-gutter border-b border-border py-24 md:py-32"
+    class="site-gutter border-t border-border py-24 md:py-32"
     id="services"
   >
     <SiteContainer>
-      <div class="mb-14 max-w-xl">
-        <h2
-          class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
-          id="services-heading"
-        >
-          Services
-        </h2>
-        <p class="mt-4 text-muted-foreground text-base sm:text-lg">
-          Focused support where reliability matters most.
-        </p>
-      </div>
-
+      <SectionHeading
+        description="Hands-on work for houses of worship. The same stack we run for congregations in Fresno."
+        eyebrow="Services"
+        headingId="services-heading"
+        title="What we provide."
+      />
       <div class="grid gap-6 md:grid-cols-3">
-        {
-          services.map((service, index) => (
-            <Card
-              class="overflow-hidden bg-card/80 transition-colors duration-300 hover:bg-card"
-              style={`animation-delay: ${index * 100}ms`}
-            >
-              <img
-                alt={service.imageAlt}
-                class="aspect-square w-full object-cover"
-                decoding="async"
-                height="1024"
-                loading="lazy"
-                src={service.image}
-                width="1024"
-              >
-              <CardHeader>
-                <CardTitle>{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))
-        }
+        {services.map((service) => (
+            <a class="group" href={service.href}>
+              <Card class="h-full bg-card/80 transition-colors duration-300 hover:bg-card">
+                <CardHeader>
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            </a>
+          ))}
       </div>
     </SiteContainer>
   </section>
 
-  <!-- About -->
   <section
-    aria-labelledby="about-heading"
-    class="site-gutter border-b border-border py-24 md:py-32"
-    id="about"
+    aria-labelledby="work-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="work"
   >
-    <SiteContainer class="max-w-2xl">
-      <h2
-        class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
-        id="about-heading"
-      >
-        About
-      </h2>
-      <p class="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
-        Zenitram Solutions provides practical network and systems support so
-        worship communities and nonprofits can focus on mission, not
-        infrastructure.
+    <SiteContainer>
+      <SectionHeading
+        description="Live church sites we design and maintain. Graphic work for the same congregations — slides, welcome pieces, bilingual layouts."
+        eyebrow="Work"
+        headingId="work-heading"
+        title="Churches we serve."
+      />
+
+      <div class="grid gap-10 lg:grid-cols-2">
+        {clients.map((client) => (
+            <article>
+              <BrowserFrame alt={client.alt} src={client.image} url={client.url} />
+              <h3 class="mt-5 font-bold font-heading text-2xl tracking-tight">
+                <a
+                  class="transition-opacity hover:opacity-80"
+                  href={client.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {client.name}
+                </a>
+              </h3>
+              <p class="mt-2 text-muted-foreground">{client.note}</p>
+            </article>
+          ))}
+      </div>
+
+      <div class="mt-20">
+        <h3 class="font-bold font-heading text-2xl tracking-tight">
+          Graphic design examples
+        </h3>
+        <p class="mt-2 max-w-2xl text-muted-foreground">
+          Sample congregation graphics — lyric slides and bilingual welcome
+          layouts. Not a live service deck.
+        </p>
+        <div class="mt-8 grid gap-6 lg:grid-cols-2">
+          {graphics.map((graphic) => (
+              <figure class="overflow-hidden rounded-2xl ring-1 ring-white/10">
+                <img
+                  alt={graphic.alt}
+                  class="aspect-video w-full object-cover"
+                  decoding="async"
+                  height="900"
+                  loading="lazy"
+                  src={graphic.src}
+                  width="1440"
+                />
+                <figcaption class="border-white/10 border-t px-4 py-3 text-muted-foreground text-sm">
+                  {graphic.caption}
+                </figcaption>
+              </figure>
+            ))}
+        </div>
+      </div>
+    </SiteContainer>
+  </section>
+
+  <section
+    aria-labelledby="portal-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="portal"
+  >
+    <SiteContainer>
+      <SectionHeading
+        description="The Fresno Victory staff portal, shown with sample data only — no member names, emails, or live rosters. Orders, teams, and reminders for the people who serve on Sunday."
+        eyebrow="Staff portal"
+        headingId="portal-heading"
+        title="Church service management, sanitized."
+      />
+      <div class="grid gap-8">
+        {portalShots.map((shot) => (
+            <figure class="overflow-hidden rounded-2xl ring-1 ring-white/10">
+              <img
+                alt={shot.alt}
+                class="w-full"
+                decoding="async"
+                height="900"
+                loading="lazy"
+                src={shot.src}
+                width="1440"
+              />
+              <figcaption class="border-white/10 border-t px-4 py-3 text-muted-foreground text-sm">
+                {shot.caption}
+              </figcaption>
+            </figure>
+          ))}
+      </div>
+    </SiteContainer>
+  </section>
+
+  <section
+    aria-labelledby="media-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="media"
+  >
+    <SiteContainer>
+      <SectionHeading
+        description="Screens, cabling, and presentation software so the room and the stream stay together."
+        eyebrow="Media"
+        headingId="media-heading"
+        title="What the congregation sees."
+      />
+      <div class="grid gap-6 md:grid-cols-2">
+        <figure class="overflow-hidden rounded-2xl ring-1 ring-white/10">
+          <img
+            alt="Church sanctuary with LED wall, side screens, and a media booth with mixer and camera"
+            class="aspect-video w-full object-cover"
+            decoding="async"
+            height="720"
+            loading="lazy"
+            src="/images/media-sanctuary.webp"
+            width="1280"
+          >
+        </figure>
+        <figure class="overflow-hidden rounded-2xl ring-1 ring-white/10">
+          <img
+            alt="Dressed network and AV rack with switch, UPS, and patch cables"
+            class="aspect-video w-full object-cover"
+            decoding="async"
+            height="720"
+            loading="lazy"
+            src="/images/media-rack.webp"
+            width="1280"
+          >
+        </figure>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {mediaTools.map((tool) => (
+            <Card>
+              <CardHeader>
+                <CardTitle>{tool.title}</CardTitle>
+                <CardDescription>{tool.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+      </div>
+    </SiteContainer>
+  </section>
+
+  <section
+    aria-labelledby="zenith-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="zenith-cast"
+  >
+    <SiteContainer>
+      <SectionHeading
+        description="A Zenitram Solutions app for organizations that need lyrics, scripture, and announcements on a screen — without seat licenses, monthly plans, or a vendor login to preach."
+        eyebrow="Coming soon"
+        headingId="zenith-heading"
+        title="Zenith Cast."
+      />
+      <figure class="overflow-hidden rounded-2xl ring-1 ring-white/10">
+        <img
+          alt="Zenith Cast operator view with live lyric output and next-slide queue"
+          class="w-full"
+          decoding="async"
+          height="900"
+          loading="lazy"
+          src="/images/zenith-cast.webp"
+          width="1440"
+        >
+      </figure>
+      <p class="mt-6 max-w-2xl text-muted-foreground">
+        Built for churches and similar organizations that want a low-cost
+        presentation path: local control, multiple outputs, and no subscription
+        tax. ProPresenter and Proclaim remain supported where they already fit.
       </p>
     </SiteContainer>
   </section>
 
-  <!-- Contact -->
+  <section
+    aria-labelledby="agentic-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="agentic"
+  >
+    <SiteContainer>
+      <SectionHeading
+        description="Staff and team management with contact lists and reminders. The portal queues the follow-through so serving does not depend on a group text."
+        eyebrow="Agentic tools"
+        headingId="agentic-heading"
+        title="If this Sunday, then that reminder."
+      />
+      <div class="grid gap-6 md:grid-cols-3">
+        {applets.map((applet) => (
+            <Card>
+              <CardHeader>
+                <span
+                  class:list={[
+                    "mb-4 inline-block size-10 rounded-lg",
+                    applet.swatch,
+                  ]}
+                />
+                <CardTitle>{applet.title}</CardTitle>
+                <CardDescription>{applet.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+      </div>
+    </SiteContainer>
+  </section>
+
+  <section
+    aria-labelledby="cyber-heading"
+    class="site-gutter border-t border-border py-24 md:py-32"
+    id="cyber"
+  >
+    <SiteContainer>
+      <SectionHeading
+        description="Church offices, volunteer devices, and campus Wi-Fi need a quieter kind of hardening. This line is on the way."
+        eyebrow="Coming soon"
+        headingId="cyber-heading"
+        title="Cybersecurity for church organizations."
+      />
+      <div class="grid gap-6 md:grid-cols-3">
+        {cyberItems.map((item) => (
+            <Card>
+              <CardHeader>
+                <p class="mb-2 font-semibold text-muted-foreground text-xs uppercase tracking-[0.14em]">
+                  Coming soon
+                </p>
+                <CardTitle>{item.title}</CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+      </div>
+    </SiteContainer>
+  </section>
+
   <section
     aria-labelledby="contact-heading"
-    class="site-gutter py-24 md:py-32"
+    class="site-gutter border-t border-border py-24 md:py-32"
     id="contact"
   >
     <SiteContainer class="max-w-2xl">
       <h2
-        class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+        class="font-extrabold font-heading text-3xl tracking-tight sm:text-4xl md:text-5xl"
         id="contact-heading"
       >
-        Contact
+        Tell us what Sunday needs.
       </h2>
       <p class="mt-6 text-base text-muted-foreground sm:text-lg">
-        Tell us briefly what you need. We will follow up by email.
+        A site, a booth, a portal, or a presentation stack. We will follow up by
+        email.
       </p>
-      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-        <Button href="mailto:francisco@zenitram.dev" size="lg" variant="default">
+      <div class="mt-8">
+        <Button
+          href="mailto:francisco@zenitram.dev"
+          size="lg"
+          variant="default"
+        >
           Email francisco@zenitram.dev
         </Button>
-        <a
-          class="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
-          href="mailto:francisco@zenitram.dev"
-        >
-          francisco@zenitram.dev
-        </a>
       </div>
     </SiteContainer>
   </section>

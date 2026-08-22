@@ -1,6 +1,6 @@
 # Zenitram Solutions
 
-Public one-page site for **Zenitram Solutions** — network and systems solutions for houses of worship and nonprofit organizations.
+Public one-page site for **Zenitram Solutions** — church-focused technology: websites, graphic design, media, staff portals, and Zenith Cast.
 
 ## Stack
 

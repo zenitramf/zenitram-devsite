@@ -89,9 +89,9 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius-xs: calc(var(--radius) - 0.375rem);
@@ -121,36 +121,36 @@
   --color-sidebar-outline: var(--sidebar-outline);
 }
 
-/* Pure black theme — white / near-white UI */
+/* White on black — IFTTT-inspired charcoal, pill radius */
 :root {
-  --background: #000000;
-  --foreground: #f5f5f5;
-  --card: #0a0a0a;
-  --card-foreground: #f5f5f5;
-  --popover: #000000;
-  --popover-foreground: #f5f5f5;
+  --background: #111111;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
   --primary: #ffffff;
-  --primary-foreground: #000000;
+  --primary-foreground: #111111;
   --primary-accent: #e8e8e8;
-  --secondary: #141414;
-  --secondary-foreground: #f5f5f5;
-  --secondary-accent: #f5f5f5;
-  --muted: #111111;
+  --secondary: #222222;
+  --secondary-foreground: #ffffff;
+  --secondary-accent: #ffffff;
+  --muted: #1a1a1a;
   --muted-foreground: #a3a3a3;
-  --accent: #1a1a1a;
-  --accent-foreground: #f5f5f5;
+  --accent: #222222;
+  --accent-foreground: #ffffff;
   --info: #a3a3a3;
-  --info-foreground: #000000;
+  --info-foreground: #111111;
   --success: #d4d4d4;
-  --success-foreground: #000000;
+  --success-foreground: #111111;
   --warning: #e5e5e5;
-  --warning-foreground: #000000;
+  --warning-foreground: #111111;
   --error: #f5f5f5;
-  --error-foreground: #000000;
+  --error-foreground: #111111;
   --border: #2a2a2a;
-  --input: #1a1a1a;
+  --input: #222222;
   --outline: #d4d4d4;
-  --radius: 0.5rem;
+  --radius: 1rem;
 
   --chart-1: #f5f5f5;
   --chart-2: #d4d4d4;
@@ -172,12 +172,12 @@
     0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 8px 10px -2px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
 
-  --sidebar-background: #000000;
-  --sidebar-foreground: #f5f5f5;
+  --sidebar-background: #111111;
+  --sidebar-foreground: #ffffff;
   --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #000000;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #222222;
+  --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #2a2a2a;
   --sidebar-outline: #d4d4d4;
 }
@@ -199,9 +199,9 @@
     *,
     *::before,
     *::after {
+      transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
     }
   }
 
